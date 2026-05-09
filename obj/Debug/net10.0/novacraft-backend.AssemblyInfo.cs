@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("novacraft-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e673e3055cce9daf1df61851c599de368c22a4f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e09eaa5bf502c8a43f707ae3b4dc1a681fdfd529")]
 [assembly: System.Reflection.AssemblyProductAttribute("novacraft-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("novacraft-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

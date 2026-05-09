@@ -38,12 +38,31 @@ builder.Services.AddScoped<EmailService>();
 
 // CORS — allow React frontend
 builder.Services.AddCors(opt => opt.AddPolicy("Frontend", policy =>
-    policy.WithOrigins(
+    /* policy.WithOrigins(
         builder.Configuration["Frontend:Url"] ?? "http://localhost:3151",
-        "https://novacraft.azurewebsites.net"
-    )
+        "https://novacraft-frontend-ffi9g2vpr-abbas-projects-c2fffa0a.vercel.app",
+        "https://novacraft-frontend.vercel.app/",
+        "http://localhost:3151",
+        "http://localhost:5173",
+        "http://localhost:3000"
+    ), */
+    policy.SetIsOriginAllowed(origin =>
+        {
+            // Allow production domain
+            if (origin == "https://novacraft-frontend.vercel.app") return true;
+            
+            // Allow all Vercel preview deployments
+            if (origin.StartsWith("https://novacraft-frontend-") && 
+                origin.EndsWith(".vercel.app")) return true;
+            
+            // Allow localhost for development
+            if (origin.StartsWith("http://localhost:")) return true;
+            
+            return false;
+        })
     .AllowAnyHeader()
     .AllowAnyMethod()
+    .AllowCredentials()
 ));
 
 var app = builder.Build();
