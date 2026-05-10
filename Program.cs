@@ -37,7 +37,7 @@ builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<EmailService>();
 
 // CORS — allow React frontend
-builder.Services.AddCors(opt => opt.AddPolicy("Frontend", policy =>
+//builder.Services.AddCors(opt => opt.AddPolicy("Frontend", policy =>
     /* policy.WithOrigins(
         builder.Configuration["Frontend:Url"] ?? "http://localhost:3151",
         "https://novacraft-frontend-ffi9g2vpr-abbas-projects-c2fffa0a.vercel.app",
@@ -46,7 +46,7 @@ builder.Services.AddCors(opt => opt.AddPolicy("Frontend", policy =>
         "http://localhost:5173",
         "http://localhost:3000"
     ), */
-    policy.SetIsOriginAllowed(origin =>
+    /* policy.SetIsOriginAllowed(origin =>
         {
             // Allow production domain
             if (origin == "https://novacraft-frontend.vercel.app") return true;
@@ -62,7 +62,12 @@ builder.Services.AddCors(opt => opt.AddPolicy("Frontend", policy =>
         })
     .AllowAnyHeader()
     .AllowAnyMethod()
-    .AllowCredentials()
+    .AllowCredentials() */
+    builder.Services.AddCors(opt => opt.AddPolicy("Frontend", policy =>
+    policy.AllowAnyOrigin()  // ← Temporarily allow all origins for testing
+          .AllowAnyHeader()
+          .AllowAnyMethod()
+    
 ));
 
 var app = builder.Build();
